@@ -40,5 +40,5 @@ jobs:
       with:
         # branch: gh-pages # by default
         ssh-key: ${{ secrets.DEPLOY_KEY_SECRET }}
-        folder: dist/kids
+        folder: dist/client
         branch: gh-pages
