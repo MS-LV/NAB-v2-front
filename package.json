@@ -5,8 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --configuration=production",
-    "gh-build": "ng build --configuration=production ",
-    "watch": "ng build --watch --configuration=development --base-href=/NAB-v2-front/",
+    "gh-build": "ng build --configuration=production --base-href=/NAB-v2-front/",
+    "watch": "ng build --watch --configuration=development ",
     "test": "ng test",
     "lint": "ng lint --fix",
     "format": "npx prettier --write ."
