@@ -40,7 +40,7 @@ jobs:
       with:
         # branch: gh-pages # by default
         ssh-key: ${{ secrets.DEPLOY_KEY_SECRET }}
-        folder: dist/client
+        folder: dist/browser
         branch: gh-pages
 
         
