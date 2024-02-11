@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-dictionary',
+  selector: 'view-dictionary',
   standalone: true,
   imports: [],
   templateUrl: './dictionary.component.html',
