@@ -1,1 +1,0 @@
-import{Q as o,na as i,oa as a,ra as r,sa as s}from"./chunk-NWKJV4EU.js";var l=(()=>{let e=class e{};e.\u0275fac=function(n){return new(n||e)},e.\u0275cmp=o({type:e,selectors:[["app-home"]],standalone:!0,features:[s],decls:2,vars:0,template:function(n,p){n&1&&(i(0,"h1"),r(1,"NAB English Center"),a())}});let t=e;return t})();export{l as HomeComponent};
