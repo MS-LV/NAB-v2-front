@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './dictionary.component.html',
-  styleUrl: './dictionary.component.scss'
+  styleUrl: './dictionary.component.scss',
 })
-export class DictionaryComponent {
-
-}
+export class DictionaryComponent {}

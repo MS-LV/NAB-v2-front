@@ -1,5 +1,37 @@
+:host {
+    height: 100%;
+    display: block;
+}
 .app {
     display: flex;
     flex-direction: column;
     justify-content: flex-start
+}
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+mat-drawer-container {
+    height: 100%;
+}
+.sidenav {
+    // padding: 10px 0;
+    background: var(--prime-color);
+}
+.mat-list-item {
+    color: white
+}
+mat-drawer {
+    max-width: 50%;
+    width: 200px;
+}
+mat-drawer button {
+    width: 100%;
+    display: block;
+}
+.menu-item {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    
 }

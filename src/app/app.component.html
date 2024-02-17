@@ -1,4 +1,34 @@
-<div class="app">
-    <comp-header></comp-header>
-    <router-outlet></router-outlet>
-</div>
+<mat-toolbar color="primary">
+    <button (click)="drawer.toggle()" mat-icon-button aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>My App</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>share</mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-drawer-container autosize>
+    <mat-drawer color="primary" [opened]="!(isHandset$ | async)" #drawer class="sidenav" mode="side">
+        <mat-list role="list">
+            @for (path of routerPaths(); track path.path) {
+            <mat-list-item role="listitem">
+                <!-- <button mat-flat-button class="mat-headline-5" color="primary">{{ path.title }}</button> -->
+                <div class="menu-item" style="color: #fff">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+                    <span>{{path.title}}</span>
+                </div>
+            </mat-list-item>
+            } @empty { Empty list of links }
+        </mat-list>
+
+        <!-- @for (path of routerPaths(); track path.path) {
+        <button mat-flat-button color="primary">{{ path.title }}</button>
+        } @empty { Empty list of links } -->
+    </mat-drawer>
+    <mat-drawer-content></mat-drawer-content>
+</mat-drawer-container>
