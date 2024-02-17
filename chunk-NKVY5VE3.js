@@ -1,1 +1,0 @@
-import{Q as i,na as o,oa as r,ra as a,sa as s}from"./chunk-NWKJV4EU.js";var p=(()=>{let e=class e{};e.\u0275fac=function(n){return new(n||e)},e.\u0275cmp=i({type:e,selectors:[["view-dictionary"]],standalone:!0,features:[s],decls:2,vars:0,template:function(n,d){n&1&&(o(0,"p"),a(1,"dictionary works!"),r())}});let t=e;return t})();export{p as DictionaryComponent};

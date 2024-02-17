@@ -1,1 +1,0 @@
-import{Q as i,na as o,oa as a,ra as r,sa as s}from"./chunk-NWKJV4EU.js";var p=(()=>{let e=class e{};e.\u0275fac=function(n){return new(n||e)},e.\u0275cmp=i({type:e,selectors:[["app-home"]],standalone:!0,features:[s],decls:2,vars:0,template:function(n,d){n&1&&(o(0,"h1"),r(1,"NAB English Center Jamoliddin"),a())}});let t=e;return t})();export{p as HomeComponent};
