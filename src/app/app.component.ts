@@ -1,5 +1,5 @@
 import { Component, signal, inject, OnInit } from '@angular/core';
-import { RouterOutlet, Router } from '@angular/router';
+import { RouterOutlet, Router, RouterLink } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,7 +9,7 @@ import {MatListModule} from '@angular/material/list';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay, first, tap } from 'rxjs/operators';
-import { HeaderComponent } from '@components/header/header.component';
+import { HeaderComponent } from '@student_components/header/header.component';
 import { RoutesPath } from '@/app.interface';
 
 @Component({
@@ -24,6 +24,7 @@ import { RoutesPath } from '@/app.interface';
     MatListModule,
     HeaderComponent,
     RouterOutlet,
+    RouterLink
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -34,7 +35,8 @@ export class AppComponent implements OnInit {
   private router = inject(Router);
   private breakpointObserver = inject(BreakpointObserver);
   ngOnInit(): void {
-    const routes = <RoutesPath[]>this.router.config.map(({title, path}) => ({title, path}));
+    
+    const routes = <RoutesPath[]>this.router.config.map(({title, path, data}) => ({title, path, data}));
     this.routerPaths.set(routes);
     console.log(this.routerPaths());
     

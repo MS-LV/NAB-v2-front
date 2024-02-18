@@ -18,17 +18,15 @@
             @for (path of routerPaths(); track path.path) {
             <mat-list-item role="listitem">
                 <!-- <button mat-flat-button class="mat-headline-5" color="primary">{{ path.title }}</button> -->
-                <div class="menu-item" style="color: #fff">
-                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+                <div class="menu-item" style="color: #fff" [routerLink]="[path.path]">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">{{path.data.icon}}</mat-icon>
                     <span>{{path.title}}</span>
                 </div>
             </mat-list-item>
             } @empty { Empty list of links }
         </mat-list>
-
-        <!-- @for (path of routerPaths(); track path.path) {
-        <button mat-flat-button color="primary">{{ path.title }}</button>
-        } @empty { Empty list of links } -->
     </mat-drawer>
-    <mat-drawer-content></mat-drawer-content>
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
 </mat-drawer-container>

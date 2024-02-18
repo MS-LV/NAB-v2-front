@@ -4,8 +4,10 @@
     "baseUrl": "src",
     "paths": {
       "@/*": ["app/*"],
-      "@components/*": ["app/components/*"],
-      "@views": ["app/views"]
+      "@student/*": ["app/student/*"],
+      "@admin/*": ["app/admin/*"],
+      "@student_components/*": ["app/student/components/*"],
+      "@student_views/*": ["app/student/views/*"]
     },
     "noUnusedLocals": true,
     "noUnusedParameters": true,
