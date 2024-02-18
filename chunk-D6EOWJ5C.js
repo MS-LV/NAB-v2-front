@@ -1,0 +1,1 @@
+import{Qb as r,Ub as a,fa as n,tb as o,ub as i}from"./chunk-S637TPFO.js";var d=(()=>{class e{static \u0275fac=function(t){return new(t||e)};static \u0275cmp=n({type:e,selectors:[["view-dictionary"]],standalone:!0,features:[a],decls:2,vars:0,template:function(t,m){t&1&&(o(0,"p"),r(1,"dictionary works!"),i())}})}return e})();export{d as DictionaryComponent};
