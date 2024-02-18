@@ -1,5 +1,3 @@
-import { Linter } from "eslint";
-
 module.exports = {
   "root": true,
   "ignorePatterns": [

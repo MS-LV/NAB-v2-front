@@ -1,5 +1,5 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { Router, RouterOutlet, RouterLink } from '@angular/router';
+import { Router, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,6 +25,7 @@ import { RoutesPath } from '@/app.interface';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+    RouterLinkActive
   ],
 })
 export class StudentComponent implements OnInit {
@@ -35,12 +36,10 @@ export class StudentComponent implements OnInit {
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
-      map(result => result.matches),
+      map((result: {matches: boolean}) => result.matches),
       shareReplay(),
       first(),
-      tap(v => {
-        console.log(v);
-      })
+      tap()
     );
   constructor() {}
 
@@ -56,6 +55,5 @@ export class StudentComponent implements OnInit {
       })
     ) as RoutesPath[];
     this.routerPaths.set(routes);
-    console.log(this.router.config);
   }
 }

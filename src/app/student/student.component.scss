@@ -11,9 +11,11 @@
 .example-spacer {
     flex: 1 1 auto;
 }
-
+mat-toolbar {
+    flex: 0 0 64px;
+}
 mat-drawer-container {
-    flex:  1 1 auto;
+    flex-grow: 1;
 }
 .sidenav {
     background: var(--prime-color);

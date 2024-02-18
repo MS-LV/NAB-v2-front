@@ -7,7 +7,8 @@
       "@student/*": ["app/student/*"],
       "@admin/*": ["app/admin/*"],
       "@student_components/*": ["app/student/components/*"],
-      "@student_views/*": ["app/student/views/*"]
+      "@student_views/*": ["app/student/views/*"],
+      "@student_directives/*": ["app/student/directives/*"]
     },
     "noUnusedLocals": true,
     "noUnusedParameters": true,
