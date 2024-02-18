@@ -17,9 +17,9 @@
         <mat-list role="list">
             @for (path of routerPaths(); track path.path) {
             <mat-list-item role="listitem">
-                <!-- <button mat-flat-button class="mat-headline-5" color="primary">{{ path.title }}</button> -->
                 <div class="menu-item" style="color: #fff" [routerLink]="[path.path]">
-                    <mat-icon aria-hidden="false" aria-label="Example home icon">{{path.data.icon}}</mat-icon>
+                    <!-- <mat-icon aria-hidden="false" aria-label="Example home icon">{{path.data.icon}}</mat-icon> -->
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
                     <span>{{path.title}}</span>
                 </div>
             </mat-list-item>
