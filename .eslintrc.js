@@ -1,3 +1,5 @@
+import { Linter } from "eslint";
+
 module.exports = {
   "root": true,
   "ignorePatterns": [
@@ -45,16 +47,22 @@ module.exports = {
             "ignoreRestArgs": true
           }
         ],
-        "no-unused-vars": [
-          "error",
-          {
-            "argsIgnorePattern": "^_"
-          }
+        "no-unused-vars": "off",
+        "unused-imports/no-unused-imports": "error",
+        "unused-imports/no-unused-vars": [
+            "warn",
+            {
+                "vars": "all",
+                "varsIgnorePattern": "^_",
+                "args": "after-used",
+                "argsIgnorePattern": "^_",
+            },
         ],
       },
       "parser": "@typescript-eslint/parser",
       "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "unused-imports"
       ],
       parserOptions: {
         project: true,
@@ -66,9 +74,7 @@ module.exports = {
       "files": [
         "*.html"
       ],
-      "extends": [
-
-      ],
+      extends: ['plugin:@angular-eslint/template/recommended'],
       parser: "@angular-eslint/template-parser",
       "rules": {
         "@angular-eslint/template/attributes-order": [
