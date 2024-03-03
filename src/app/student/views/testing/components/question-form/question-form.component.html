@@ -5,7 +5,7 @@
     </ng-template>
     @for ( question of questionList; track question.id; let index = $index, first = $first, last = $last ) {
     <mat-step [editable]="false" [errorMessage]="'Error message'" [hasError]="true">
-      <ng-template matStepLabel>{{  formArray()!.get('' + index)!.value}}</ng-template>
+      <ng-template matStepLabel>{{ formArray()!.get('' + index)!.value}}</ng-template>
       <ng-template matStepContent>
         <h1 class="mat-title">{{ question.questionDescription }}</h1>
         <mat-radio-group name="flavors" [formControlName]="index">
@@ -21,7 +21,7 @@
           </button>
           }  -->
           @if (!last) {
-          <button type="button" mat-raised-button color="primary" matStepperNext>
+          <button type="button" mat-raised-button color="primary" matStepperNext [disabled]="formArray().get('' + index)!.invalid">
             Next
           </button>
           } @else {
