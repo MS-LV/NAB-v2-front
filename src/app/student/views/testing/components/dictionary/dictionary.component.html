@@ -1,6 +1,5 @@
 <form [formGroup]="formGroup" (ngSubmit)="submit()">
-  <div class="mat-headline-4 title">Dictionary: Lessone 1 - Title of Book</div>
-  <mat-stepper orientation="vertical" formArrayName="dictionary">
+  <mat-stepper formArrayName="dictionary" orientation="vertical">
     @for (
       question of dictionaryList();
       track question.id;
@@ -23,7 +22,10 @@
               (keydown.enter)="onInputEnter($event, index)"
               (input)="input($event, question)" />
             @if (isValidField(index)) {
-              <mat-error>answer is <strong>required</strong></mat-error>
+              <mat-error
+                >answer is
+                <strong>required</strong>
+              </mat-error>
             }
           </mat-form-field>
           <div class="buttons">
@@ -39,7 +41,7 @@
                 color="primary"
                 matStepperNext
                 [disabled]="
-                  formGroup
+                  formGroup!
                     .get('dictionary')!
                     .get('' + index)!
                     .hasError('required')
@@ -52,7 +54,7 @@
                 mat-raised-button
                 color="primary"
                 matStepperNext
-                [disabled]="formGroup.invalid">
+                [disabled]="formGroup!.get('dictionary')!.invalid">
                 Submit
               </button>
             }

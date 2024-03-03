@@ -3,12 +3,12 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      "@/*": ["app/*"],
-      "@student/*": ["app/student/*"],
       "@admin/*": ["app/admin/*"],
       "@student_components/*": ["app/student/components/*"],
       "@student_views/*": ["app/student/views/*"],
-      "@student_directives/*": ["app/student/directives/*"]
+      "@student_directives/*": ["app/student/directives/*"],
+      "@student/*": ["app/student/*"],
+      "@/*": ["app/*"],
     },
     "noUnusedLocals": true,
     "noUnusedParameters": true,

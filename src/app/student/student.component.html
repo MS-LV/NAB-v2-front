@@ -27,12 +27,16 @@
     color="primary"
     class="sidenav"
     mode="side"
-    [opened]="!(isHandset$ | async)">
+    [opened]="!isHandset()">
     <mat-list role="list">
       @for (path of routerPaths(); track path.path) {
         <mat-list-item role="listitem">
           <!-- <button mat-flat-button class="mat-headline-5" color="primary">{{ path.title }}</button> -->
-          <div class="menu-item" style="color: #fff" [routerLink]="[path.path]" routerLinkActive="active">
+          <div
+            class="menu-item"
+            style="color: #fff"
+            routerLinkActive="active"
+            [routerLink]="[path.path]">
             <mat-icon aria-hidden="false" aria-label="Example home icon">{{
               path.data.icon
             }}</mat-icon>

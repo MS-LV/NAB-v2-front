@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Install Angular</h2>
+<mat-dialog-content class="mat-typography">
+  @for (question of questionList; track question.id) {
+    <div>
+      <p>{{ question.tajik }} - {{ question.russian }}</p>
+      <p>You answer: {{ question.answer | titlecase }}</p>
+      <p>True answer: {{ question.english | titlecase }}</p>
+      <hr noshade />
+    </div>
+  } @empty {}
+</mat-dialog-content>

@@ -1,15 +1,22 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
-import { Router, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, OnInit, signal, OnDestroy, ViewChild } from '@angular/core';
+import {
+  Router,
+  RouterOutlet,
+  RouterLink,
+  RouterLinkActive,
+  NavigationStart,
+} from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenavModule, MatDrawer } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
-import { map, shareReplay, first, tap } from 'rxjs/operators';
+import { map, shareReplay, tap } from 'rxjs/operators';
 import { RoutesPath } from '@/app.interface';
+import { StudentService } from '@/student/student.service';
 
 @Component({
   selector: 'app-student',
@@ -25,35 +32,53 @@ import { RoutesPath } from '@/app.interface';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    RouterLinkActive
+    RouterLinkActive,
   ],
+  providers: [StudentService],
 })
-export class StudentComponent implements OnInit {
+export class StudentComponent implements OnInit, OnDestroy {
+  @ViewChild(MatDrawer) drawer!: MatDrawer;
   routerPaths = signal<RoutesPath[]>([]);
-  private breakpointObserver = inject(BreakpointObserver);
-  private router = inject(Router);
+  isHandset = signal(true);
 
-  isHandset$: Observable<boolean> = this.breakpointObserver
-    .observe(Breakpoints.Handset)
-    .pipe(
-      map((result: {matches: boolean}) => result.matches),
-      shareReplay(),
-      first(),
-      tap()
-    );
-  constructor() {}
+  private isHandset$!: Observable<boolean>;
+  constructor(
+    private router: Router,
+    private breakpointObserver: BreakpointObserver,
+    private service: StudentService
+  ) {}
 
   ngOnInit(): void {
-    const studentPaths = this.router.config.find(
-      path => path.path === 'student'
-    );
-    const routes = (studentPaths!.children as RoutesPath[]).map(
-      ({ title, path, data }) => ({
-        title,
-        path,
-        data,
-      })
-    ) as RoutesPath[];
+    this.checkLayout();
+    this.setRouterLinks();
+    this.onRouterNavigate();
+  }
+
+  private onRouterNavigate() {
+    this.router.events.subscribe((event: any) => {
+      if (this.isHandset() && event instanceof NavigationStart) {
+        this.drawer.close();
+      }
+    });
+  }
+  private setRouterLinks() {
+    const routes = this.service.routerLinks();
     this.routerPaths.set(routes);
+  }
+
+  private checkLayout() {
+    this.isHandset$ = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+      tap((result: { matches: boolean }) => {
+        this.isHandset.set(result.matches);
+      }),
+      map((result: { matches: boolean }) => result.matches),
+      shareReplay()
+    );
+    this.isHandset$.subscribe();
+  }
+
+  ngOnDestroy() {
+    this.isHandset$ = new Observable();
+    this.routerPaths.set([]);
   }
 }

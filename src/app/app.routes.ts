@@ -21,6 +21,15 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'testing',
+        title: 'Testing',
+        data: { icon: 'home' },
+        loadComponent: () =>
+          import('@student_views/testing/testing.component').then(
+            m => m.TestingComponent
+          ),
+      },
+      {
         path: 'dictionary',
         title: 'Dictionary',
         data: { icon: 'library_books' },

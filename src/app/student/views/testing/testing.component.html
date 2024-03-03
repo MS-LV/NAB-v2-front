@@ -1,0 +1,38 @@
+<form [formGroup]="formGroup" (ngSubmit)="submit()">
+  <mat-stepper orientation="vertical" [linear]="false">
+    <mat-step [editable]="false">
+      <ng-template matStepLabel>Grammar</ng-template>
+      <ng-template matStepContent>
+        <com-grammar
+          [formGroup]="formGroup"
+          (eventEmitter)="submitTest($event)"></com-grammar>
+      </ng-template>
+    </mat-step>
+    <mat-step [editable]="false">
+      <ng-template matStepLabel>Reading</ng-template>
+      <ng-template matStepContent>
+        <comp-reading [formGroup]="formGroup"></comp-reading>
+      </ng-template>
+    </mat-step>
+    <mat-step [editable]="false">
+      <ng-template matStepLabel>Listening</ng-template>
+      <ng-template matStepContent>
+        <comp-listening [formGroup]="formGroup"></comp-listening>
+      </ng-template>
+    </mat-step>
+    <mat-step [editable]="false">
+      <ng-template matStepLabel>Dictionary</ng-template>
+      <ng-template matStepContent>
+        <comp-dictionary
+          [formGroup]="formGroup"
+          (eventEmitter)="submitTest($event)"></comp-dictionary>
+      </ng-template>
+    </mat-step>
+    <mat-step [editable]="false">
+      <ng-template matStepLabel>Writing</ng-template>
+      <ng-template matStepContent>
+        <comp-writing [formGroup]="formGroup"></comp-writing>
+      </ng-template>
+    </mat-step>
+  </mat-stepper>
+</form>

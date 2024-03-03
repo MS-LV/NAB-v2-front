@@ -2,14 +2,12 @@ import { Directive, ElementRef, Input } from '@angular/core';
 
 @Directive({
   selector: '[autofocus]',
-  standalone: true
+  standalone: true,
 })
 export class AutoFocusDirective {
-
   private focus = true;
 
-  constructor(private el: ElementRef) {
-  }
+  constructor(private el: ElementRef) {}
 
   ngOnInit() {
     if (this.focus) {
@@ -20,7 +18,6 @@ export class AutoFocusDirective {
   }
 
   @Input() set autofocus(condition: boolean) {
-    this.focus = condition !== false;
+    this.focus = condition;
   }
-
 }
