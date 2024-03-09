@@ -11,5 +11,5 @@ export enum ActivityMessageType {
 }
 
 export enum StepperStateMessage {
-  ERROR = 'Correct answer is: '
-} 
+  ERROR = 'Correct answer is: ',
+}

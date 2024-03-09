@@ -1,10 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter, signal } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { ActivityOutputMessage } from '@student_views/testing/testing.interface';
+import { grammarListExample, GrammarList } from '@student_views/testing/components/grammar/grammar.interface';
+import { Activities, ActivityMessageType } from '@student_views/testing/testing.constants';
+import { QuestionFormComponent } from '@student_views/testing/components/question-form/question-form.component';
 
 @Component({
-  selector: 'com-reading',
+  selector: 'comp-reading',
   standalone: true,
-  imports: [],
+  imports: [QuestionFormComponent],
   templateUrl: './reading.component.html',
   styleUrl: './reading.component.scss',
 })
-export class ReadingComponent {}
+export class ReadingComponent {
+  @Input() formGroup!: FormGroup;
+  @Output() eventEmitter = new EventEmitter<ActivityOutputMessage>();
+  readingList = signal<GrammarList[]>(JSON.parse(JSON.stringify(grammarListExample)));
+  activityName = Activities.READING;
+  constructor() {
+
+  }
+
+  ngOnInit(): void {
+  }
+
+  submit() {
+    const message: ActivityOutputMessage = {
+      activity: Activities.READING,
+      type: ActivityMessageType.DONE,
+    };
+    this.eventEmitter.emit(message);
+    // this.stepper.;
+  }
+
+  ngOnDestroy(): void {
+  }
+}

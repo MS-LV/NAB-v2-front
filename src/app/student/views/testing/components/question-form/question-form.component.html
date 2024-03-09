@@ -1,16 +1,19 @@
-<form [formGroup]="formGroup" (ngSubmit)="submit()">
+<form [formGroup]="formGroup" (ngSubmit)="onFormSubmit()">
   <mat-stepper [formArrayName]="activityName" orientation="vertical" [disableRipple]="true">
     <ng-template matStepperIcon="error">
       <mat-icon>cancel</mat-icon>
     </ng-template>
     @for ( question of questionList; track question.id; let index = $index, first = $first, last = $last ) {
-    <mat-step [editable]="false" [errorMessage]="'Error message'" [hasError]="true">
+    <mat-step 
+    [editable]="false" 
+    [errorMessage]="'Incorrect answer'" 
+    [hasError]="errorMessage(index)">
       <ng-template matStepLabel>{{ formArray()!.get('' + index)!.value}}</ng-template>
       <ng-template matStepContent>
         <h1 class="mat-title">{{ question.questionDescription }}</h1>
-        <mat-radio-group name="flavors" [formControlName]="index">
+        <mat-radio-group name="flavors" [formControlName]="index" [(ngModel)]="question.answer">
           @for (variant of question.variants; track variant) {
-          <mat-radio-button [value]="variant">{{ variant | titlecase }}
+          <mat-radio-button [value]="variant.toLowerCase()">{{ variant | titlecase }}
           </mat-radio-button>
           } @empty { No variants. Some thing wrong with this question }
         </mat-radio-group>
@@ -21,7 +24,11 @@
           </button>
           }  -->
           @if (!last) {
-          <button type="button" mat-raised-button color="primary" matStepperNext [disabled]="formArray().get('' + index)!.invalid">
+          <button 
+          type="button" 
+          mat-raised-button color="primary" 
+          matStepperNext (click)="onNextClick()" 
+          [disabled]="formArray().get('' + index)!.invalid">
             Next
           </button>
           } @else {

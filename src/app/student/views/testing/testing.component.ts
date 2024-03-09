@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, signal, ElementRef } from '@angular/core';
 import {
   FormGroup,
   FormArray,
@@ -18,6 +18,7 @@ import { ListeningComponent } from '@student/views/testing/components/listening/
 import { ReadingComponent } from '@student/views/testing/components/reading/reading.component';
 import { WritingComponent } from '@student/views/testing/components/writing/writing.component';
 import { Activities } from '@student/views/testing/testing.constants';
+
 
 @Component({
   selector: 'view-testing',
@@ -50,13 +51,21 @@ export class TestingComponent implements OnInit {
     [Activities.WRITING]: new FormControl('', [Validators.required]),
   });
 
-  constructor() {}
+  activities = signal([]);
 
-  ngOnInit() {}
+
+  grammarActivity = GrammarComponent
+
+  constructor(private element: ElementRef) { }
+
+  ngOnInit() {
+    const elem = <HTMLElement>this.element.nativeElement
+    elem.scrollIntoView();
+  }
 
   submitTest(_: any) {
     this.stepper.next();
   }
 
-  submit() {}
+  onFormSubmit() { }
 }

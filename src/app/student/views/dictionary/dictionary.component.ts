@@ -86,7 +86,7 @@ export class DictionaryComponent implements OnInit, OnDestroy {
     this.stepper.next();
   }
 
-  submit() {
+  onFormSubmit() {
     this.openDialog('300ms', '100ms', this.dictionaryList());
   }
 

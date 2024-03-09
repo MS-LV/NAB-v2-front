@@ -1,4 +1,4 @@
-<form [formGroup]="formGroup" (ngSubmit)="submit()">
+<form [formGroup]="formGroup" (ngSubmit)="onFormSubmit()">
   <mat-stepper formArrayName="dictionary" orientation="vertical">
     @for (
       question of dictionaryList();

@@ -77,7 +77,7 @@ export class DictionaryComponent implements OnInit, OnDestroy {
     this.stepper.next();
   }
 
-  submit() {
+  onFormSubmit() {
     const message: ActivityOutputMessage = {
       activity: Activities.DICTIONARY,
       type: ActivityMessageType.DONE,

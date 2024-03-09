@@ -1,4 +1,4 @@
-<form [formGroup]="formGroup" (ngSubmit)="submit()">
+<form [formGroup]="formGroup" (ngSubmit)="onFormSubmit()">
   <div class="mat-headline-4 title">Dictionary: Lessone 1 - Title of Book</div>
   <mat-stepper orientation="vertical" formArrayName="dictionary">
     @for (
@@ -39,10 +39,7 @@
                 color="primary"
                 matStepperNext
                 [disabled]="
-                  formGroup
-                    .get('dictionary')!
-                    .get('' + index)!
-                    .invalid
+                  formGroup.get('dictionary')!.get('' + index)!.invalid
                 ">
                 Next
               </button>
