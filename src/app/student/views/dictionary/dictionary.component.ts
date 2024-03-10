@@ -20,6 +20,8 @@ import {
   DictionaryList,
   dictionaryList,
 } from '@student_views/dictionary/dictionary.interface';
+import { textCompare } from '@/Utils/text.utils';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'view-dictionary',
@@ -33,6 +35,7 @@ import {
     TitleCasePipe,
     JsonPipe,
     AutoFocusDirective,
+    MatIconModule
   ],
   providers: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -44,9 +47,10 @@ export class DictionaryComponent implements OnInit, OnDestroy {
   formGroup: FormGroup = new FormGroup({
     dictionary: new FormArray([]),
   });
+  formArray = signal<FormArray>(new FormArray([new FormControl()]));
   dictionaryList = signal<DictionaryList[]>(dictionaryList);
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
     this.formInit();
@@ -82,7 +86,6 @@ export class DictionaryComponent implements OnInit, OnDestroy {
 
       return;
     }
-    console.log(event);
     this.stepper.next();
   }
 
@@ -100,8 +103,19 @@ export class DictionaryComponent implements OnInit, OnDestroy {
     return isValid;
   }
 
+  errorMessage(index: number) {
+    const answer = this.formArray().get('' + index)!.value;
+    const trueAnswer = this.dictionaryList()[index].english;
+    if (!answer) {
+      return false;
+    }
+
+    return !textCompare(answer, trueAnswer);
+  }
+
   private formInit() {
     const dictionaries = this.formGroup.get('dictionary') as FormArray;
+    this.formArray.set(dictionaries);
     this.dictionaryList().forEach(question => {
       dictionaries.push(
         new FormControl(question.answer, [Validators.required])

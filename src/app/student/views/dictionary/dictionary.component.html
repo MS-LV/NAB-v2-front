@@ -6,7 +6,7 @@
       track question.id;
       let index = $index, first = $first, last = $last
     ) {
-      <mat-step [editable]="true">
+      <mat-step [editable]="false" errorMessage="Incorrect answer" [hasError]="errorMessage(index)">
         <ng-template matStepLabel>{{ question.answer }}</ng-template>
         <ng-template matStepContent>
           <h1 class="mat-title">
@@ -59,5 +59,9 @@
     } @empty {
       Empty list of Questions
     }
+
+    <ng-template matStepperIcon="error">
+      <mat-icon>cancel</mat-icon>
+    </ng-template>
   </mat-stepper>
 </form>

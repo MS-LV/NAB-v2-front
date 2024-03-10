@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, signal } from '@angular/core';
+import { Component, Input, Output, EventEmitter, signal, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivityOutputMessage } from '@student_views/testing/testing.interface';
 import { grammarListExample, GrammarList } from '@student_views/testing/components/grammar/grammar.interface';
@@ -9,6 +9,7 @@ import { QuestionFormComponent } from '@student_views/testing/components/questio
   selector: 'comp-reading',
   standalone: true,
   imports: [QuestionFormComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './reading.component.html',
   styleUrl: './reading.component.scss',
 })
@@ -17,9 +18,6 @@ export class ReadingComponent {
   @Output() eventEmitter = new EventEmitter<ActivityOutputMessage>();
   readingList = signal<GrammarList[]>(JSON.parse(JSON.stringify(grammarListExample)));
   activityName = Activities.READING;
-  constructor() {
-
-  }
 
   ngOnInit(): void {
   }
@@ -30,9 +28,7 @@ export class ReadingComponent {
       type: ActivityMessageType.DONE,
     };
     this.eventEmitter.emit(message);
-    // this.stepper.;
   }
-
   ngOnDestroy(): void {
   }
 }

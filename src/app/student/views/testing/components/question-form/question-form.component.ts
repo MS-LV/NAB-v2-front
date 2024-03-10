@@ -79,13 +79,9 @@ export class QuestionFormComponent implements OnInit {
   errorMessage(index: number) {
     const answer = this.formArray().get('' + index)!.value;
     const trueAnswer = this.questionList[index].trueAnswer;
-    
     if (!answer) {
       return false;
     }
-    console.log('checkAnswer', !!textCompare(answer, trueAnswer));
-    // console.log(answer, trueAnswer);
-    
     return !textCompare(answer, trueAnswer);
   }
 

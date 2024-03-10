@@ -7,6 +7,7 @@ import {
   Output,
   EventEmitter,
   signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ReactiveFormsModule,
@@ -30,6 +31,8 @@ import {
   Activities,
   ActivityMessageType,
 } from '@student_views/testing/testing.constants';
+import { textCompare } from '@/Utils/text.utils';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'comp-dictionary',
@@ -43,7 +46,9 @@ import {
     TitleCasePipe,
     JsonPipe,
     AutoFocusDirective,
+    MatIconModule
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './dictionary.component.html',
   styleUrl: './dictionary.component.scss',
 })
@@ -52,6 +57,7 @@ export class DictionaryComponent implements OnInit, OnDestroy {
   @Output() eventEmitter = new EventEmitter<ActivityOutputMessage>();
   @ViewChild(MatStepper) stepper!: MatStepper;
   dictionaryList = signal<DictionaryList[]>(dictionaryList);
+  formArray = signal<FormArray>(new FormArray([new FormControl()]));
 
   ngOnInit() {
     this.formInit();
@@ -94,13 +100,23 @@ export class DictionaryComponent implements OnInit, OnDestroy {
       this.formGroup.get('dictionary')!.get('' + index)!.touched;
     return isValid;
   }
+  errorMessage(index: number) {
+    const answer = this.formArray().get('' + index)!.value;
+    const trueAnswer = this.dictionaryList()[index].english;
+    if (!answer) {
+      return false;
+    }
+
+    return !textCompare(answer, trueAnswer);
+  }
   private formInit() {
     const dictionaries = this.formGroup.get('dictionary') as FormArray;
+    this.formArray.set(dictionaries);
     this.dictionaryList().forEach((question: DictionaryList) => {
       dictionaries.push(
         new FormControl(question.answer, [Validators.required])
       );
     });
   }
-  ngOnDestroy() {}
+  ngOnDestroy() { }
 }

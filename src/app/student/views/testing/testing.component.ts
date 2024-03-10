@@ -48,24 +48,35 @@ export class TestingComponent implements OnInit {
     [Activities.READING]: new FormArray([], [Validators.required]),
     [Activities.LISTENING]: new FormArray([], [Validators.required]),
     [Activities.DICTIONARY]: new FormArray([], [Validators.required]),
-    [Activities.WRITING]: new FormControl('', [Validators.required]),
+    [Activities.WRITING]: new FormGroup({
+      theme: new FormControl(null, [Validators.required]),
+      assay: new FormControl('', [Validators.required])
+    }),
   });
 
   activities = signal([]);
 
 
-  grammarActivity = GrammarComponent
-
+  grammarActivity = GrammarComponent;
   constructor(private element: ElementRef) { }
 
+
   ngOnInit() {
-    const elem = <HTMLElement>this.element.nativeElement
-    elem.scrollIntoView();
   }
 
   submitTest(_: any) {
     this.stepper.next();
+    this.scrollElement();
+    console.log('submit: ', this.formGroup.value);
+
   }
 
   onFormSubmit() { }
+
+  private scrollElement() {
+    setTimeout(() => {
+      const elem = <HTMLElement>this.element.nativeElement;
+      elem.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    }, 300);
+  }
 }
