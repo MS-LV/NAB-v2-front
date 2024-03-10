@@ -27,7 +27,7 @@ import { MatDividerModule } from '@angular/material/divider';
 })
 export class SignInComponent implements OnInit {
   formGroup = new FormGroup({
-    email: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required])
   });
   emailTypes = signal([
@@ -40,13 +40,21 @@ export class SignInComponent implements OnInit {
       value: '@email.ru'
     }
   ]);
-  emailField = signal(this.formGroup.get('email')!.value ? this.formGroup.get('email')!.value!.match(new RegExp(/^\w+/)) as string[] : ['']);
+  emailField = signal(['']);
 
   ngOnInit() {
-    console.log(this.formGroup.get('email')!.value);
-    
+    console.log(this.formGroup.get('email'));
+
   }
   onSubmit(): void {
-    alert('Thanks!');
+  }
+  onEmailInput(): void {
+    const email = this.formGroup.get('email')!.value;
+    if (!email) {
+      this.emailField.set([''])
+      return;
+    }
+    const emailName = this.formGroup.get('email')!.value!.match(new RegExp(/^\w+/)) as string[];
+    this.emailField.set(emailName);
   }
 }

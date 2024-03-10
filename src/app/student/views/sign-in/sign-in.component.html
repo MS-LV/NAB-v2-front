@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput type="email" placeholder="Email ex: user1@gmail.com" formControlName="email" list="emailTypes" required/> @if (formGroup.controls['email'].hasError('required')) {
+            <input matInput type="email" (input)="onEmailInput()" placeholder="Email ex: user1@gmail.com" formControlName="email" list="emailTypes" required/> @if (formGroup.controls['email'].hasError('required')) {
             <mat-error>email is
               <strong>required</strong>
             </mat-error>
@@ -24,7 +24,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Submit</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="formGroup.invalid">Submit</button>
     </mat-card-actions>
   </mat-card>
 </form>
