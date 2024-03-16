@@ -34,5 +34,5 @@ const EXAMPLE_DATA: HistoryTableItem[] = [
 })
 export class HistoryDictionaryComponent {
   historyList = signal<HistoryTableItem[]>(EXAMPLE_DATA);
-  historyColumns: string[] = [];
+  historyColumns = signal<string[]>(['id', 'name']);
 }

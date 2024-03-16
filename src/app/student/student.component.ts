@@ -17,6 +17,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay, tap } from 'rxjs/operators';
 import { RoutesPath } from '@/app.interface';
 import { StudentService } from '@/student/student.service';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-student',
@@ -33,6 +34,7 @@ import { StudentService } from '@/student/student.service';
     MatSidenavModule,
     MatListModule,
     RouterLinkActive,
+    MatMenuModule
   ],
   providers: [StudentService],
 })

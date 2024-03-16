@@ -19,9 +19,9 @@
   <mat-paginator
     #paginator
     aria-label="Select page"
-    [length]="dataSource.data.length"
+    [length]="list.length || 0"
     [pageIndex]="0"
     [pageSize]="10"
-    [pageSizeOptions]="[5, 10, 20]">
+    [pageSizeOptions]="pageSizeOptions()">
   </mat-paginator>
 </div>
