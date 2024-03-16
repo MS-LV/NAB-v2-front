@@ -1,9 +1,11 @@
+@import url('@student/styles/full-size-component.scss');
 :host {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
 }
+
 .full-width {
   width: 100%;
 }

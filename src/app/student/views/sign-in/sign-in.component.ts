@@ -44,7 +44,6 @@ export class SignInComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.formGroup.get('email'));
-
   }
   onSubmit(): void {
   }

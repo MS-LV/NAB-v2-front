@@ -23,7 +23,7 @@ export const routes: Routes = [
       {
         path: 'testing',
         title: 'Testing',
-        data: { icon: 'home' },
+        data: { icon: 'school' },
         loadComponent: () =>
           import('@student_views/testing/testing.component').then(
             m => m.TestingComponent
@@ -37,6 +37,33 @@ export const routes: Routes = [
           import('@student_views/dictionary/dictionary.component').then(
             m => m.DictionaryComponent
           ),
+      },
+      {
+        path: 'history',
+        title: 'History',
+        data: {icon: 'history'},
+        children: [
+          {
+            path: '',
+            title: 'History',
+            loadComponent: () => import('@student_views/history/history.component').then(
+              m => m.HistoryComponent)
+          },
+          {
+            path: 'dictionary',
+            title: 'History -> Dictionary',
+            loadComponent: () => import('@student_views/history/history-dictionary/history-dictionary.component').then(
+              m => m.HistoryDictionaryComponent
+            )
+          },
+          {
+            path: 'testing',
+            title: 'History -> Testing',
+            loadComponent: () => import('@student_views/history/history-testing/history-testing.component').then(
+              m => m.HistoryTestingComponent
+            )
+          }
+        ]
       },
       {
         path: 'sign-in',
@@ -57,30 +84,12 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'nav',
-        title: 'Nav Bar',
-        data: { icon: 'home' },
-        loadComponent: () =>
-          import('@student_views/nav-bar/nav-bar.component').then(
-            m => m.NavBarComponent
-          ),
-      },
-      {
         path: 'dashboard',
         title: 'Dashboard',
         data: { icon: 'dashboard' },
         loadComponent: () =>
           import('@student_views/user-dashboard/user-dashboard.component').then(
             m => m.UserDashboardComponent
-          ),
-      },
-      {
-        path: 'table',
-        title: 'Table',
-        data: { icon: 'table_chart' },
-        loadComponent: () =>
-          import('@student_views/user-table/user-table.component').then(
-            m => m.UserTableComponent
           ),
       },
     ],

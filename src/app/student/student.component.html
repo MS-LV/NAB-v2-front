@@ -32,16 +32,25 @@
       @for (path of routerPaths(); track path.path) {
         <mat-list-item role="listitem">
           <!-- <button mat-flat-button class="mat-headline-5" color="primary">{{ path.title }}</button> -->
-          <div
+          <a mat-button
             class="menu-item"
-            style="color: #fff"
+            routerLinkActive="active"
+            [routerLink]="[path.path]">
+              <mat-icon 
+                aria-hidden="false"
+                aria-label="Example home icon">
+                {{path.data.icon}}</mat-icon>
+              <span>{{ path.title }}</span>
+            </a>
+          <!-- <div
+            class="menu-item"
             routerLinkActive="active"
             [routerLink]="[path.path]">
             <mat-icon aria-hidden="false" aria-label="Example home icon">{{
               path.data.icon
             }}</mat-icon>
             <span>{{ path.title }}</span>
-          </div>
+          </div> -->
         </mat-list-item>
       } @empty {
         Empty list of links

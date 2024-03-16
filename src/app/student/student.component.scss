@@ -21,7 +21,7 @@ mat-drawer-container {
     background: var(--prime-color);
 }
 .mat-list-item {
-    color: white
+    color: white;
 }
 mat-drawer {
     max-width: 50%;
@@ -32,10 +32,14 @@ mat-drawer button {
     display: block;
 }
 .menu-item {
-    display: flex;
-    align-items: center;
     font-size: 18px;
-    color: #fff;
-    column-gap: 10px
-    
+    justify-content: flex-start !important;
+    width: 100%;
+    &.active {
+        color: #fff !important;
+    }
+}
+mat-drawer-content {
+    display: flex;
+    overflow-x: hidden;
 }
