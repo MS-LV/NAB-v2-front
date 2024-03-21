@@ -20,7 +20,11 @@ import {
   grammarListExample,
 } from '@student_views/testing/components/grammar/grammar.interface';
 import { QuestionFormComponent } from '@student_views/testing/components/question-form/question-form.component';
-import { TESTING_CONFIG_TOKEN, TestingConfig, TESTING_CONFIG } from '@student_views/testing/testing.config';
+import {
+  TESTING_CONFIG_TOKEN,
+  TestingConfig,
+  TESTING_CONFIG,
+} from '@student_views/testing/testing.config';
 @Component({
   selector: 'com-grammar',
   standalone: true,
@@ -33,14 +37,16 @@ import { TESTING_CONFIG_TOKEN, TestingConfig, TESTING_CONFIG } from '@student_vi
 export class GrammarComponent implements OnInit, OnDestroy {
   @Input() formGroup!: FormGroup;
   @Output() eventEmitter = new EventEmitter<ActivityOutputMessage>();
-  grammarList = signal<GrammarList[]>(JSON.parse(JSON.stringify(grammarListExample)));
+  grammarList = signal<GrammarList[]>(
+    JSON.parse(JSON.stringify(grammarListExample))
+  );
   activityName = Activities.GRAMMAR;
 
   constructor(@Inject(TESTING_CONFIG_TOKEN) config: TestingConfig) {
     console.log(config);
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   submit() {
     const message: ActivityOutputMessage = {
@@ -50,6 +56,5 @@ export class GrammarComponent implements OnInit, OnDestroy {
     this.eventEmitter.emit(message);
   }
 
-  ngOnDestroy(): void {
-  }
+  ngOnDestroy(): void {}
 }

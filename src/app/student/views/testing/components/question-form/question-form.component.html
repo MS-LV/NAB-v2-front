@@ -1,35 +1,64 @@
 <form [formGroup]="formGroup" (ngSubmit)="onFormSubmit()">
-  <mat-stepper [formArrayName]="activityName" orientation="vertical" [disableRipple]="true">
-    @for ( question of questionList; track question.id ) {
-    <mat-step [editable]="false" errorMessage="Incorrect answer" [hasError]="errorMessage($index)">
-      <ng-template matStepLabel>{{ formArray()!.get('' + $index)!.value}}</ng-template>
-      <ng-template matStepContent>
-        <h1 class="mat-title">{{ question.questionDescription }}</h1>
-        <mat-radio-group name="flavors" [formControlName]="$index" [(ngModel)]="question.answer">
-          @for (variant of question.variants; track variant) {
-          <mat-radio-button [value]="variant.toLowerCase()">{{ variant | titlecase }}
-          </mat-radio-button>
-          } @empty { No variants. Some thing wrong with this question }
-        </mat-radio-group>
-        <div class="buttons">
-          <!-- @if (!$first) {
+  <mat-stepper
+    orientation="vertical"
+    [formArrayName]="activityName"
+    [disableRipple]="true">
+    @for (question of questionList; track question.id) {
+      <mat-step
+        errorMessage="Incorrect answer"
+        [editable]="false"
+        [hasError]="errorMessage($index)">
+        <ng-template matStepLabel>{{
+          formArray()!.get('' + $index)!.value
+        }}</ng-template>
+        <ng-template matStepContent>
+          <h1 class="mat-title">{{ question.questionDescription }}</h1>
+          <mat-radio-group
+            name="flavors"
+            [formControlName]="$index"
+            [(ngModel)]="question.answer">
+            @for (variant of question.variants; track variant) {
+              <mat-radio-button [value]="variant.toLowerCase()"
+                >{{ variant | titlecase }}
+              </mat-radio-button>
+            } @empty {
+              No variants. Some thing wrong with this question
+            }
+          </mat-radio-group>
+          <div class="buttons">
+            <!-- @if (!$first) {
           <button type="button" mat-button matStepperPrevious accesskey="z">
             Back
           </button>
           }  -->
-          @if (!$last) {
-          <button type="button" mat-raised-button color="primary" matStepperNext (click)="onNextClick()" [disabled]="formArray().get('' + $index)!.invalid">
-            Next
-          </button>
-          } @else {
-          <button type="submit" mat-raised-button color="primary" matStepperNext [disabled]="formGroup!.get(activityName)!.invalid">
-            Submit
-          </button>
-          }
-        </div>
-      </ng-template>
-    </mat-step>
-    } @empty { Empty list of Questions }
+            @if (!$last) {
+              <button
+                type="button"
+                mat-raised-button
+                color="primary"
+                matStepperNext
+                [disableRipple]="true"
+                [disabled]="formArray().get('' + $index)!.invalid"
+                (click)="onNextClick()">
+                Next
+              </button>
+            } @else {
+              <button
+                type="submit"
+                mat-raised-button
+                color="primary"
+                matStepperNext
+                [disableRipple]="true"
+                [disabled]="formGroup!.get(activityName)!.invalid">
+                Submit
+              </button>
+            }
+          </div>
+        </ng-template>
+      </mat-step>
+    } @empty {
+      Empty list of Questions
+    }
 
     <ng-template matStepperIcon="error">
       <mat-icon>cancel</mat-icon>

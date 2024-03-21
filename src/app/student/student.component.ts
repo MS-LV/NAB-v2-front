@@ -34,7 +34,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSidenavModule,
     MatListModule,
     RouterLinkActive,
-    MatMenuModule
+    MatMenuModule,
   ],
   providers: [StudentService],
 })

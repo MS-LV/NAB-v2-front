@@ -35,7 +35,7 @@ import { MatIconModule } from '@angular/material/icon';
     TitleCasePipe,
     JsonPipe,
     AutoFocusDirective,
-    MatIconModule
+    MatIconModule,
   ],
   providers: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -50,7 +50,7 @@ export class DictionaryComponent implements OnInit, OnDestroy {
   formArray = signal<FormArray>(new FormArray([new FormControl()]));
   dictionaryList = signal<DictionaryList[]>(dictionaryList);
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
     this.formInit();

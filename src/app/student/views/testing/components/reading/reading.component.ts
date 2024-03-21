@@ -1,8 +1,21 @@
-import { Component, Input, Output, EventEmitter, signal, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  signal,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivityOutputMessage } from '@student_views/testing/testing.interface';
-import { grammarListExample, GrammarList } from '@student_views/testing/components/grammar/grammar.interface';
-import { Activities, ActivityMessageType } from '@student_views/testing/testing.constants';
+import {
+  grammarListExample,
+  GrammarList,
+} from '@student_views/testing/components/grammar/grammar.interface';
+import {
+  Activities,
+  ActivityMessageType,
+} from '@student_views/testing/testing.constants';
 import { QuestionFormComponent } from '@student_views/testing/components/question-form/question-form.component';
 
 @Component({
@@ -16,11 +29,12 @@ import { QuestionFormComponent } from '@student_views/testing/components/questio
 export class ReadingComponent {
   @Input() formGroup!: FormGroup;
   @Output() eventEmitter = new EventEmitter<ActivityOutputMessage>();
-  readingList = signal<GrammarList[]>(JSON.parse(JSON.stringify(grammarListExample)));
+  readingList = signal<GrammarList[]>(
+    JSON.parse(JSON.stringify(grammarListExample))
+  );
   activityName = Activities.READING;
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   submit() {
     const message: ActivityOutputMessage = {
@@ -29,6 +43,5 @@ export class ReadingComponent {
     };
     this.eventEmitter.emit(message);
   }
-  ngOnDestroy(): void {
-  }
+  ngOnDestroy(): void {}
 }

@@ -8,7 +8,7 @@ export const cardList = [
     background: 'assets/dictionary.png',
     content: `Everyday questions. 
     Students must take a dictionary test every day. 
-    50 questions for each stage. You must take a dictionary quiz in a week.`
+    50 questions for each stage. You must take a dictionary quiz in a week.`,
   },
   {
     id: 1,
@@ -19,6 +19,6 @@ export const cardList = [
     background: 'assets/testing.png',
     content: `Every month quiz. 
     Students must take a dictionary test every month. 
-    You must take test Grammar, Reading, Listening, Dictionary and Writing`
-  }
-]
+    You must take test Grammar, Reading, Listening, Dictionary and Writing`,
+  },
+];

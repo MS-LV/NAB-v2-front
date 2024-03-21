@@ -46,7 +46,7 @@ import { MatIconModule } from '@angular/material/icon';
     TitleCasePipe,
     JsonPipe,
     AutoFocusDirective,
-    MatIconModule
+    MatIconModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './dictionary.component.html',
@@ -118,5 +118,5 @@ export class DictionaryComponent implements OnInit, OnDestroy {
       );
     });
   }
-  ngOnDestroy() { }
+  ngOnDestroy() {}
 }

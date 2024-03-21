@@ -1,6 +1,6 @@
-import {Component, signal} from '@angular/core';
-import {RouterLink} from '@angular/router';
-import {TableComponent} from '@student_components/table/table.component'
+import { Component, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { TableComponent } from '@student_components/table/table.component';
 import { HistoryTableItem } from '@student_components/table/table-datasource';
 
 const EXAMPLE_DATA: HistoryTableItem[] = [

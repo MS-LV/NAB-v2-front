@@ -5,5 +5,5 @@ export interface ActivityOutputMessage {
 
 export interface ActivityList {
   name: string;
-  // component: 
+  // component:
 }

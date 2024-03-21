@@ -1,13 +1,16 @@
 <form [formGroup]="writingFormGroup()" (ngSubmit)="submit()">
-    <mat-radio-group formControlName="theme">
-        @for(theme of writingThemes(); track theme) {
-        <mat-radio-button class="example-radio-button" [value]="theme">{{theme}}</mat-radio-button>
-        } @empty { List of themes empty }
-
-    </mat-radio-group>
-    <mat-form-field>
-        <mat-label>Your theme for writing</mat-label>
-        <textarea matInput formControlName="assay" rows="10"></textarea>
-    </mat-form-field>
-    <button mat-raised-button color="primary">Finish and Save</button>
+  <mat-radio-group formControlName="theme">
+    @for (theme of writingThemes(); track theme) {
+      <mat-radio-button class="example-radio-button" [value]="theme">{{
+        theme
+      }}</mat-radio-button>
+    } @empty {
+      List of themes empty
+    }
+  </mat-radio-group>
+  <mat-form-field>
+    <mat-label>Your theme for writing</mat-label>
+    <textarea matInput formControlName="assay" rows="10"></textarea>
+  </mat-form-field>
+  <button mat-raised-button [disableRipple]="true" color="primary">Finish and Save</button>
 </form>

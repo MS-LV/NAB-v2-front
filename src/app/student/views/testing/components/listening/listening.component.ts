@@ -5,7 +5,10 @@ import {
 } from '@student/views/testing/components/grammar/grammar.interface';
 import { FormGroup } from '@angular/forms';
 import { ActivityOutputMessage } from '@student_views/testing/testing.interface';
-import { Activities, ActivityMessageType } from '@student_views/testing/testing.constants';
+import {
+  Activities,
+  ActivityMessageType,
+} from '@student_views/testing/testing.constants';
 import { QuestionFormComponent } from '@student_views/testing/components/question-form/question-form.component';
 
 @Component({
@@ -18,11 +21,12 @@ import { QuestionFormComponent } from '@student_views/testing/components/questio
 export class ListeningComponent {
   @Input() formGroup!: FormGroup;
   @Output() eventEmitter = new EventEmitter<ActivityOutputMessage>();
-  listeningList = signal<GrammarList[]>(JSON.parse(JSON.stringify(grammarListExample)));
+  listeningList = signal<GrammarList[]>(
+    JSON.parse(JSON.stringify(grammarListExample))
+  );
   activityName = Activities.LISTENING;
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   submit() {
     const message: ActivityOutputMessage = {
@@ -32,6 +36,5 @@ export class ListeningComponent {
     this.eventEmitter.emit(message);
   }
 
-  ngOnDestroy(): void {
-  }
+  ngOnDestroy(): void {}
 }

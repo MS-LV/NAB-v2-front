@@ -10,7 +10,6 @@ export interface HistoryTableItem {
   name: string;
 }
 
-
 // TODO: replace this with real data from your application
 // const EXAMPLE_DATA: HistoryTableItem[] = [
 //   { id: 1, name: 'Hydrogen' },

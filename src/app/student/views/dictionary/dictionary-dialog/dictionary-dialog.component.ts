@@ -11,5 +11,5 @@ import { DictionaryList } from '@student_views/dictionary/dictionary.interface';
   styleUrl: './dictionary-dialog.component.scss',
 })
 export class DictionaryDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public questionList: DictionaryList[]) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public questionList: DictionaryList[]) {}
 }

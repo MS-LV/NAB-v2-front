@@ -6,7 +6,10 @@
       track question.id;
       let index = $index, first = $first, last = $last
     ) {
-      <mat-step [editable]="false" errorMessage="Incorrect answer" [hasError]="errorMessage(index)">
+      <mat-step
+        errorMessage="Incorrect answer"
+        [editable]="false"
+        [hasError]="errorMessage(index)">
         <ng-template matStepLabel>{{ question.answer }}</ng-template>
         <ng-template matStepContent>
           <h1 class="mat-title">
@@ -28,7 +31,7 @@
           </mat-form-field>
           <div class="buttons">
             @if (!first) {
-              <button type="button" mat-button matStepperPrevious accesskey="z">
+              <button type="button" mat-button [disableRipple]="true" matStepperPrevious accesskey="z">
                 Back
               </button>
             }
@@ -36,6 +39,7 @@
               <button
                 type="button"
                 mat-raised-button
+                [disableRipple]="true"
                 color="primary"
                 matStepperNext
                 [disabled]="
@@ -47,6 +51,7 @@
               <button
                 type="submit"
                 mat-raised-button
+                [disableRipple]="true"
                 color="primary"
                 matStepperNext
                 [disabled]="formGroup.invalid">

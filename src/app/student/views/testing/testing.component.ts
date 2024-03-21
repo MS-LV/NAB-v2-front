@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, signal, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  signal,
+  ElementRef,
+} from '@angular/core';
 import {
   FormGroup,
   FormArray,
@@ -18,7 +24,6 @@ import { ListeningComponent } from '@student/views/testing/components/listening/
 import { ReadingComponent } from '@student/views/testing/components/reading/reading.component';
 import { WritingComponent } from '@student/views/testing/components/writing/writing.component';
 import { Activities } from '@student/views/testing/testing.constants';
-
 
 @Component({
   selector: 'view-testing',
@@ -50,32 +55,28 @@ export class TestingComponent implements OnInit {
     [Activities.DICTIONARY]: new FormArray([], [Validators.required]),
     [Activities.WRITING]: new FormGroup({
       theme: new FormControl(null, [Validators.required]),
-      assay: new FormControl('', [Validators.required])
+      assay: new FormControl('', [Validators.required]),
     }),
   });
 
   activities = signal([]);
 
-
   grammarActivity = GrammarComponent;
-  constructor(private element: ElementRef) { }
+  constructor(private element: ElementRef) {}
 
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   submitTest(_: any) {
     this.stepper.next();
     this.scrollElement();
     console.log('submit: ', this.formGroup.value);
-
   }
 
-  onFormSubmit() { }
+  onFormSubmit() {}
 
   private scrollElement() {
     setTimeout(() => {
-      const elem = <HTMLElement>this.element.nativeElement;
+      const elem = this.element.nativeElement as HTMLElement;
       elem.scrollIntoView({ block: 'start', behavior: 'smooth' });
     }, 300);
   }

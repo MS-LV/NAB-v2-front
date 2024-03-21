@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, ViewChild, Input, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ViewChild,
+  Input,
+  signal,
+} from '@angular/core';
 import { MatTableModule, MatTable } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatSortModule, MatSort } from '@angular/material/sort';
@@ -20,8 +26,7 @@ export class TableComponent implements AfterViewInit {
   dataSource = new UserTableDataSource();
   pageSizeOptions = signal<number[]>([5, 10, 20, 50]);
 
-  constructor() {
-  }
+  constructor() {}
 
   ngAfterViewInit(): void {
     this.tableInit();

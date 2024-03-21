@@ -1,44 +1,74 @@
 <form [formGroup]="formGroup" (ngSubmit)="onFormSubmit()">
   <mat-stepper formArrayName="dictionary" orientation="vertical">
-    @for ( question of dictionaryList(); track question.id; let index = $index, first = $first, last = $last ) {
-    <mat-step [editable]="false" hasError="Incorrect answer" [hasError]="errorMessage(index)">
-      <ng-template matStepLabel>{{ question.answer }}</ng-template>
-      <ng-template matStepContent>
-        <h1 class="mat-title">
-          {{ question.tajik | titlecase }} - {{ question.russian | titlecase }}
-        </h1>
-        <mat-form-field>
-          <mat-label>Type answer question</mat-label>
-          <input matInput [autofocus]="true" [value]="question.answer" [formControlName]="index" (keydown.enter)="onInputEnter($event, index)"
-            (input)="input($event, question)" /> @if (isValidField(index)) {
-          <mat-error>answer is
-            <strong>required</strong>
-          </mat-error>
-          }
-        </mat-form-field>
-        <div class="buttons">
-          @if (!first) {
-          <button type="button" mat-button matStepperPrevious accesskey="z">
-            Back
-          </button>
-          } @if (!last) {
-          <button type="button" mat-raised-button color="primary" matStepperNext [disabled]="
+    @for (
+      question of dictionaryList();
+      track question.id;
+      let index = $index, first = $first, last = $last
+    ) {
+      <mat-step
+        hasError="Incorrect answer"
+        [editable]="false"
+        [hasError]="errorMessage(index)">
+        <ng-template matStepLabel>{{ question.answer }}</ng-template>
+        <ng-template matStepContent>
+          <h1 class="mat-title">
+            {{ question.tajik | titlecase }} -
+            {{ question.russian | titlecase }}
+          </h1>
+          <mat-form-field>
+            <mat-label>Type answer question</mat-label>
+            <input
+              matInput
+              [autofocus]="true"
+              [value]="question.answer"
+              [formControlName]="index"
+              (keydown.enter)="onInputEnter($event, index)"
+              (input)="input($event, question)" />
+            @if (isValidField(index)) {
+              <mat-error
+                >answer is
+                <strong>required</strong>
+              </mat-error>
+            }
+          </mat-form-field>
+          <div class="buttons">
+            @if (!first) {
+              <button type="button" mat-button matStepperPrevious [disableRipple]="true" accesskey="z">
+                Back
+              </button>
+            }
+            @if (!last) {
+              <button
+                type="button"
+                mat-raised-button
+                color="primary"
+                matStepperNext
+                [disableRipple]="true"
+                [disabled]="
                   formGroup!
                     .get('dictionary')!
                     .get('' + index)!
                     .hasError('required')
                 ">
-            Next
-          </button>
-          } @else {
-          <button type="submit" mat-raised-button color="primary" matStepperNext [disabled]="formGroup!.get('dictionary')!.invalid">
-            Submit
-          </button>
-          }
-        </div>
-      </ng-template>
-    </mat-step>
-    } @empty { Empty list of Questions }
+                Next
+              </button>
+            } @else {
+              <button
+                type="submit"
+                mat-raised-button
+                color="primary"
+                matStepperNext
+                [disableRipple]="true"
+                [disabled]="formGroup!.get('dictionary')!.invalid">
+                Submit
+              </button>
+            }
+          </div>
+        </ng-template>
+      </mat-step>
+    } @empty {
+      Empty list of Questions
+    }
     <ng-template matStepperIcon="error">
       <mat-icon>cancel</mat-icon>
     </ng-template>

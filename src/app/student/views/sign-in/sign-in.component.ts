@@ -1,6 +1,11 @@
 import { Component, OnInit, signal } from '@angular/core';
 
-import { ReactiveFormsModule, Validators, FormGroup, FormControl } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  Validators,
+  FormGroup,
+  FormControl,
+} from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
@@ -22,38 +27,39 @@ import { MatDividerModule } from '@angular/material/divider';
     MatCardModule,
     ReactiveFormsModule,
     MatProgressBarModule,
-    MatDividerModule
+    MatDividerModule,
   ],
 })
 export class SignInComponent implements OnInit {
   formGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required])
+    password: new FormControl('', [Validators.required]),
   });
   emailTypes = signal([
     {
       name: 'Gmail',
-      value: '@gmail.com'
+      value: '@gmail.com',
     },
     {
       name: 'Email',
-      value: '@email.ru'
-    }
+      value: '@email.ru',
+    },
   ]);
   emailField = signal(['']);
 
   ngOnInit() {
     console.log(this.formGroup.get('email'));
   }
-  onSubmit(): void {
-  }
+  onSubmit(): void {}
   onEmailInput(): void {
     const email = this.formGroup.get('email')!.value;
     if (!email) {
-      this.emailField.set([''])
+      this.emailField.set(['']);
       return;
     }
-    const emailName = this.formGroup.get('email')!.value!.match(new RegExp(/^\w+/)) as string[];
+    const emailName = this.formGroup
+      .get('email')!
+      .value!.match(new RegExp(/^\w+/)) as string[];
     this.emailField.set(emailName);
   }
 }
