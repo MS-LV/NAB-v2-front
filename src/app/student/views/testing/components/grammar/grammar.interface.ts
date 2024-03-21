@@ -22,7 +22,7 @@ export const grammarListExample: GrammarList[] = [
   {
     id: 3,
     questionDescription: 'Tomorrow I __ go to varzob for have some rest',
-    variants: ['is', 'in', 'am', 'not'],
+    variants: ['is', 'will', 'am', 'not'],
     trueAnswer: 'will',
   },
   {

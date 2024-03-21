@@ -54,25 +54,11 @@ export function studentRoutes(): Routes {
       },
     ],
   };
-  const signIn = {
-    ...routeBaseConfig('sign-in', 'Sign In', 'assignment_ind'),
+  const login = {
+    ...routeBaseConfig('login', 'Login', 'login'),
     loadComponent: () =>
-      import('@student_views/sign-in/sign-in.component').then(
-        m => m.SignInComponent
-      ),
-  };
-  const tree = {
-    ...routeBaseConfig('tree', 'Tree', 'forest'),
-    loadComponent: () =>
-      import('@student_views/tree-page/tree-page.component').then(
-        m => m.TreePageComponent
-      ),
-  };
-  const dashboard = {
-    ...routeBaseConfig('dashboard', 'Dashboard', 'dashboard'),
-    loadComponent: () =>
-      import('@student_views/user-dashboard/user-dashboard.component').then(
-        m => m.UserDashboardComponent
+      import('@student_views/login/login.component').then(
+        m => m.LoginComponent
       ),
   };
   return [
@@ -86,9 +72,7 @@ export function studentRoutes(): Routes {
         dictionary,
         profile,
         history,
-        signIn,
-        tree,
-        dashboard,
+        login,
       ],
     },
   ];

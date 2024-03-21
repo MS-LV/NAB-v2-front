@@ -42,6 +42,10 @@ export class StudentComponent implements OnInit, OnDestroy {
   @ViewChild(MatDrawer) drawer!: MatDrawer;
   routerPaths = signal<RoutesPath[]>([]);
   isHandset = signal(true);
+  menuList = signal([
+    {title: 'Profile', icon: 'person', router: '/student/profile'},
+    {title: 'Logout', icon: 'logout', router: '/student/logout'},
+  ]);
 
   private isHandset$!: Observable<boolean>;
   constructor(

@@ -5,7 +5,14 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'student/home',
+    redirectTo: 'welcome',
+  },
+  {
+    path: 'welcome',
+    title: 'Welcome',
+    loadComponent: () => import('@/views/welcome/welcome.component').then(
+      m => m.WelcomeComponent
+    )
   },
   ...studentRoutes(),
 ];

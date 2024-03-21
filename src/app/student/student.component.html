@@ -11,17 +11,17 @@
   <button
     mat-icon-button
     [disableRipple]="true"
-    class="example-icon"
-    aria-label="Example icon-button with share icon"
+    aria-label="User Profile Image"
     [matMenuTriggerFor]="menu">
-    <mat-icon class="toolbar-icon">account_circle</mat-icon>
+    <!-- <mat-icon class="toolbar-icon">account_circle</mat-icon> -->
+    <img class="toolbar-icon" src="assets/favicon.png" alt="">
   </button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item>
       <mat-icon>person</mat-icon> <span>Profile</span>
     </button>
     <button mat-menu-item>
-      <mat-icon aria-hidden="false">login</mat-icon> Log Out
+      <mat-icon aria-hidden="false">logout</mat-icon> LogOut
     </button>
   </mat-menu>
 </mat-toolbar>

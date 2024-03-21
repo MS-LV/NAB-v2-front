@@ -15,9 +15,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrl: './sign-in.component.scss',
+  selector: 'app-login-in',
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.scss',
   standalone: true,
   imports: [
     MatInputModule,
@@ -30,7 +30,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatDividerModule,
   ],
 })
-export class SignInComponent implements OnInit {
+export class LoginComponent implements OnInit {
   formGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),

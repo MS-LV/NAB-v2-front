@@ -1,10 +1,16 @@
 <form class="example-form" [formGroup]="formGroup">
   <mat-card class="example-card">
     <mat-card-header>
-      <img mat-card-avatar src="assets/favicon.png">
+      <input id="user_photo" type="file" hidden>
+      <label mat-card-avatar for="user_photo">
+        <img src="assets/favicon.png">
+        <div class="hover-icon">
+          <mat-icon>edit</mat-icon>
+        </div>
+      </label>
       <mat-card-title>Mumina Solieva</mat-card-title>
       <mat-card-title class="card-right">
-        <button [color]="!isReadOnly() ? 'primary': ''" mat-icon-button [disableRipple]="true" (click)="isReadOnly.set(!isReadOnly())">
+        <button [color]="!isReadOnly() ? 'primary': ''" mat-mini-fab [disableRipple]="true" (click)="isReadOnly.set(!isReadOnly())">
           <mat-icon>edit</mat-icon>
         </button> 
       </mat-card-title>
@@ -24,11 +30,22 @@
         <mat-form-field class="example-full-width">
           <mat-label>First name</mat-label>
           <input [readonly]="isReadOnly()" matInput formControlName="firstName" required />
-          <mat-hint>Hint</mat-hint>
+          @if (formGroup.controls['firstName'].hasError('required')) {
+            <mat-error
+              >first name is
+              <strong>required</strong>
+            </mat-error>
+          }
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <mat-label>Last Name</mat-label>
           <input matInput formControlName="lastName" [readonly]="isReadOnly()" required />
+            @if (formGroup.controls['lastName'].hasError('required')) {
+              <mat-error
+                >last name is
+                <strong>required</strong>
+              </mat-error>
+            }
         </mat-form-field>
       </div>
       <div>
@@ -43,6 +60,17 @@
             required
             (input)="onEmailInput()"
             placeholder="example@gmail.com" />
+              @if (formGroup.controls['email'].hasError('required')) {
+                <mat-error
+                  >email name is
+                  <strong>required</strong>
+                </mat-error>
+              }
+              @if (formGroup.controls['email'].hasError('email')) {
+                <mat-error>incorrect syntax
+                  <strong>email</strong>
+                </mat-error>
+              }
         </mat-form-field>
       </div>
   <p>
@@ -55,8 +83,8 @@
       <mat-divider></mat-divider>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button type="submit" [disableRipple]="true" color="primary">Save</button>
-      <button mat-button [disableRipple]="true">SHARE</button>
+      <button mat-icon-button type="submit" [disabled]="!isFormChanges() || formGroup.invalid" [disableRipple]="true" color="primary"><mat-icon>save</mat-icon></button>
+      <button mat-icon-button color="warn" [disableRipple]="true"><mat-icon>delete</mat-icon></button>
     </mat-card-actions>
     <mat-card-footer>
       <mat-progress-bar mode="indeterminate"></mat-progress-bar>
