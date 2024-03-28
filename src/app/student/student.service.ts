@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, Route, Routes } from '@angular/router';
 import { RoutesPath } from '@/app.interface';
 
 @Injectable()
@@ -7,10 +7,13 @@ export class StudentService {
   constructor(private router: Router) {}
 
   routerLinks() {
-    const studentPaths = this.router.config.find(
-      path => path.path === 'student'
+    const studentPaths: Route | undefined = this.router.config.find(
+      (path: Route) => path.path === 'student'
     );
-    const routes = (studentPaths!.children as RoutesPath[]).map(
+    const studentChildren = this.compareLinks(studentPaths);
+    console.log('student path', studentPaths);
+
+    const routes = (studentChildren as RoutesPath[]).map(
       ({ title, path, data }) => ({
         title,
         path,
@@ -18,5 +21,16 @@ export class StudentService {
       })
     ) as RoutesPath[];
     return routes;
+  }
+
+  private compareLinks(routes: Route | undefined): Routes {
+    if (!routes) {
+      return [];
+    }
+    const cloneRoutes = routes.children!.slice(0);
+    const filterRoutes = cloneRoutes.filter((route: Route) => {
+      return !route.redirectTo;
+    });
+    return filterRoutes;
   }
 }

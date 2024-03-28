@@ -1,8 +1,8 @@
 <mat-toolbar color="primary">
   <button
     mat-icon-button
-    [disableRipple]="true"
     aria-label="Example icon-button with menu icon"
+    [disableRipple]="true"
     (click)="drawer.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
@@ -10,19 +10,20 @@
   <span class="example-spacer"></span>
   <button
     mat-icon-button
-    [disableRipple]="true"
     aria-label="User Profile Image"
+    [disableRipple]="true"
     [matMenuTriggerFor]="menu">
     <!-- <mat-icon class="toolbar-icon">account_circle</mat-icon> -->
-    <img class="toolbar-icon" src="assets/favicon.png" alt="">
+    <img class="toolbar-icon" src="assets/favicon.png" alt="" />
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <mat-icon>person</mat-icon> <span>Profile</span>
-    </button>
-    <button mat-menu-item>
-      <mat-icon aria-hidden="false">logout</mat-icon> LogOut
-    </button>
+    @for (menu of menuList(); track menu.router) {
+      <button mat-menu-item [routerLink]="[menu.router]">
+        <mat-icon>{{ menu.icon }}</mat-icon> <span>{{ menu.title }}</span>
+      </button>
+    } @empty {
+      Empty menu list
+    }
   </mat-menu>
 </mat-toolbar>
 

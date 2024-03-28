@@ -1,7 +1,7 @@
-export function routeBaseConfig(path: string, title: string, icon = '') {
+export function routeBaseConfig(path: string, title: string, data = {}) {
   return {
     path,
     title,
-    data: { icon },
+    data,
   };
 }

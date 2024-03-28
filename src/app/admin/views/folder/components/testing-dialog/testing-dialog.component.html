@@ -1,0 +1,126 @@
+<form novalidate [formGroup]="formGroup()" (ngSubmit)="onSubmit()">
+  <h2 mat-dialog-title>Testing Questions</h2>
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Label</mat-label>
+      <input matInput placeholder="Placeholder" />
+      <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        rows="10"
+        placeholder="Description of question"></textarea>
+      <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+    </mat-form-field>
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Dictionary </mat-panel-title>
+          <mat-panel-description> Dictionary test panel </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-label>File Name</mat-label>
+          <button mat-icon-button matPrefix (click)="f_input.click()">
+            <mat-icon>attach_file</mat-icon>
+          </button>
+          <input type="text" readonly matInput formControlName="fileName" />
+          <input
+            #f_input
+            type="file"
+            hidden
+            accept=".xlsx"
+            (change)="handleFileInputChange(f_input)" />
+          <mat-error>this field is required</mat-error>
+        </mat-form-field>
+        <mat-card>
+          <mat-card-header>
+            <button
+              mat-fab
+              mat-card-avatar
+              color="primary"
+              (click)="addFormField()">
+              <mat-icon>add</mat-icon>
+            </button>
+            <mat-card-title>Question List</mat-card-title>
+            <mat-card-subtitle
+              >Dictionary addeded question list:
+              <b>{{ formQuestionList().length }}</b> question</mat-card-subtitle
+            >
+          </mat-card-header>
+          <mat-card-content>
+            @for (question of formQuestionList(); track question) {
+              <form [formGroup]="question">
+                <mat-card>
+                  <mat-card-header> </mat-card-header>
+                  <mat-card-content>
+                    <mat-form-field>
+                      <mat-label>Tajik</mat-label>
+                      <input
+                        matInput
+                        formControlName="tajik"
+                        placeholder="Tajik vocabulary" />
+                      @if (question.get('tajik')!.hasError('required')) {
+                        <mat-error>tajik field is <b>required</b></mat-error>
+                      }
+                    </mat-form-field>
+                    <mat-form-field>
+                      <mat-label>Russian</mat-label>
+                      <input
+                        matInput
+                        formControlName="russian"
+                        placeholder="Russian vocabulary" />
+                      @if (question.get('russian')!.hasError('required')) {
+                        <mat-error>russian field is <b>required</b></mat-error>
+                      }
+                    </mat-form-field>
+                    <mat-form-field>
+                      <mat-label>English</mat-label>
+                      <input
+                        matInput
+                        formControlName="english"
+                        placeholder="English vocabulary" />
+                      @if (question.get('english')!.hasError('required')) {
+                        <mat-error>english field is <b>required</b></mat-error>
+                      }
+                    </mat-form-field>
+                  </mat-card-content>
+                  <mat-card-actions>
+                    <button mat-raised-button color="accept" type="reset">
+                      Reset
+                    </button>
+                  </mat-card-actions>
+                </mat-card>
+              </form>
+            }
+          </mat-card-content>
+        </mat-card>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Self aware panel </mat-panel-title>
+          <mat-panel-description>
+            Currently I am description
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>I'm visible because I am open</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <p style="color: transparent; user-select: none">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam, nemo.
+      Laboriosam ipsa molestiae voluptatem quasi? Id reiciendis, ut repellat
+      consequatur sapiente voluptatibus temporibus, modi ullam quas sit, amet
+      est consequuntur.
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <!-- <button mat-button mat-dialog-close>Cancel</button>
+      <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+    <button mat-raised-button color="warn" type="reset">Reset</button>
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+  </mat-dialog-actions>
+</form>

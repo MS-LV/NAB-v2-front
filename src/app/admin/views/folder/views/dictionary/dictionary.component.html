@@ -1,0 +1,12 @@
+<mat-grid-list cols="4" rowHeight="50px">
+  <mat-grid-tile [colspan]="3" [rowspan]="1">
+    <h1 class="mat-h1">Dictionary questions list</h1>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button mat-mini-fab color="primary" (click)="openDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<comp-table [list]="historyList()" [columns]="historyColumns()"></comp-table>

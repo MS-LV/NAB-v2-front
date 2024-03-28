@@ -8,14 +8,9 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-welcome',
   standalone: true,
-  imports: [
-    MatCardModule,
-    RouterLink,
-    MatIconModule,
-    MatButtonModule
-  ],
+  imports: [MatCardModule, RouterLink, MatIconModule, MatButtonModule],
   templateUrl: './welcome.component.html',
-  styleUrl: './welcome.component.scss'
+  styleUrl: './welcome.component.scss',
 })
 export class WelcomeComponent {
   cards = signal(cardList);

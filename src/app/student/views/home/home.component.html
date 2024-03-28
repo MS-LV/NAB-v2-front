@@ -17,7 +17,9 @@
       <mat-card-content [innerHTML]="card.content"> </mat-card-content>
       <mat-card-actions>
         <!-- <button mat-raised-button color="primary">GO</button> -->
-        <a mat-raised-button [disableRipple]="true" [routerLink]="[card.router]">GO</a>
+        <a mat-raised-button [disableRipple]="true" [routerLink]="[card.router]"
+          >GO</a
+        >
       </mat-card-actions>
     </mat-card>
   } @empty {

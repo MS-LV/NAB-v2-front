@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { studentRoutes } from '@student/student.routes';
+import { adminRoutes } from '@admin/admin.routes';
 
 export const routes: Routes = [
   {
@@ -10,9 +11,9 @@ export const routes: Routes = [
   {
     path: 'welcome',
     title: 'Welcome',
-    loadComponent: () => import('@/views/welcome/welcome.component').then(
-      m => m.WelcomeComponent
-    )
+    loadComponent: () =>
+      import('@/views/welcome/welcome.component').then(m => m.WelcomeComponent),
   },
   ...studentRoutes(),
+  ...adminRoutes(),
 ];

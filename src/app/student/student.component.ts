@@ -6,7 +6,6 @@ import {
   RouterLinkActive,
   NavigationStart,
 } from '@angular/router';
-import { AsyncPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -27,7 +26,6 @@ import { MatMenuModule } from '@angular/material/menu';
   imports: [
     RouterOutlet,
     RouterLink,
-    AsyncPipe,
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
@@ -43,8 +41,8 @@ export class StudentComponent implements OnInit, OnDestroy {
   routerPaths = signal<RoutesPath[]>([]);
   isHandset = signal(true);
   menuList = signal([
-    {title: 'Profile', icon: 'person', router: '/student/profile'},
-    {title: 'Logout', icon: 'logout', router: '/student/logout'},
+    { title: 'Profile', icon: 'person', router: '/student/profile' },
+    { title: 'Logout', icon: 'logout', router: '/welcome' },
   ]);
 
   private isHandset$!: Observable<boolean>;

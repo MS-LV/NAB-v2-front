@@ -1,5 +1,5 @@
 export interface DictionaryList {
-  id: number;
+  id: number | string;
   answer: string;
   english: string;
   russian: string;

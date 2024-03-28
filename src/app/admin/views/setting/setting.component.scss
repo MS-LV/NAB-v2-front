@@ -1,0 +1,13 @@
+@import url('@/styles/full-size-component.scss');
+.full-width {
+  width: 100%;
+}
+mat-card-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.align-right {
+  text-align: right;
+}
