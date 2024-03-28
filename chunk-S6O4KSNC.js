@@ -1,0 +1,1 @@
+var n=function(r){return r.GRAMMAR="grammar",r.READING="reading",r.LISTENING="listening",r.DICTIONARY="dictionary",r.WRITING="writing",r}(n||{}),o=function(r){return r.DONE="done",r}(o||{});export{n as a,o as b};
